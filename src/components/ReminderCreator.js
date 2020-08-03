@@ -28,13 +28,14 @@ export class ReminderCreator extends Component {
     // everything ok
     else {
       // save
-      this.props.onSave(this.state.description, this.state.datetime, this.state.city)
+      this.props.onSave(this.state.description, this.state.datetime, this.state.city, this.state.color)
       
       // clear inputs
       this.setState({   
         description: '',
         datetime: '',
         city: '',
+        pickingColor: false,
         error: ''
       })
     }

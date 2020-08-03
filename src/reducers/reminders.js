@@ -12,7 +12,8 @@ export default function todos(state = initialState, action) {
         {
           description: action.description,
           datetime: action.datetime,
-          city: action.city
+          city: action.city,
+          color: action.color
         }
       ]
 
