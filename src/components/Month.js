@@ -27,8 +27,8 @@ const Month = ({ reminders, actions }) =>
   (
     <div>
     {getDaysByMonth().map(date => {
-      console.log(date, remindersByDate(date, reminders))
       return <MonthDay 
+        key={date.format("D")}
         date={date}
         reminders={remindersByDate(date, reminders)} />
     }
