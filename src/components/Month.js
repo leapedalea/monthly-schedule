@@ -1,6 +1,8 @@
 import React from 'react'
 import * as moment from 'moment'
 
+import MonthDay from '../components/MonthDay'
+
 const getDaysByMonth = monthDate => {
   const date = monthDate || new Date(),
     days = [];
@@ -15,21 +17,21 @@ const getDaysByMonth = monthDate => {
   return days;
 }
 
-const remindersByDate = (date, reminders) => 
-  reminders
+const remindersByDate = (date, reminders) => {
+  return reminders
     .filter(r => r.datetime.isSame(date, 'day'))
     .sort((a, b) => a.datetime.diff(b.datetime))
+}
 
 const Month = ({ reminders, actions }) =>
   (
     <div>
-    {getDaysByMonth().map(date => 
-      <div>
-        <p>{date.format("DD/MM")}</p>
-        {remindersByDate(date, reminders).map(r => 
-          <p>{`${r.datetime.format("hh:mm")}: ${r.description} (${r.city})`}</p>
-        )}
-      </div>
+    {getDaysByMonth().map(date => {
+      console.log(date, remindersByDate(date, reminders))
+      return <MonthDay 
+        date={date}
+        reminders={remindersByDate(date, reminders)} />
+    }
     )}
     </div>
   )

@@ -5,7 +5,7 @@ export class ReminderCreator extends Component {
   state = {
     description: this.props.text || '',
     datetime: this.props.datetime || '', 
-    city: this.props.city || '', 
+    city: this.props.city || '' 
   }
 
   handleSubmit = e => {
