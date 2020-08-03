@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import DateTime from 'react-datetime';
 import { SketchPicker } from 'react-color';
 
-export class ReminderCreator extends Component {
+export class ReminderEditor extends Component {
   state = {
     editing: this.props.id >= 0,
     description: this.props.description || '',
@@ -127,4 +127,4 @@ export class ReminderCreator extends Component {
   }
 }
 
-export default ReminderCreator;
+export default ReminderEditor;

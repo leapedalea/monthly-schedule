@@ -1,6 +1,6 @@
 import React from 'react'
 import MonthView from '../containers/MonthView'
-import ReminderCreator from '../components/ReminderCreator'
+import ReminderEditor from '../components/ReminderEditor'
 
 const MainSection = ({ reminderEditing, actions }) => (
     <main>
@@ -11,7 +11,7 @@ const MainSection = ({ reminderEditing, actions }) => (
           >Create new reminder
         </button>
         {reminderEditing ?
-          <ReminderCreator
+          <ReminderEditor
             key={reminderEditing.id}
             onSave={ (...args) => {
               actions.updateReminder(reminderEditing.id, ...args)
@@ -19,7 +19,7 @@ const MainSection = ({ reminderEditing, actions }) => (
             }}
             onCancel={() => actions.setReminderEditing(null)}
             {...reminderEditing} /> :
-          <ReminderCreator onSave={actions.addReminder} />
+          <ReminderEditor onSave={actions.addReminder} />
         }
         <MonthView />
       </div>
