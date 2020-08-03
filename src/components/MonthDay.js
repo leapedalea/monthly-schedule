@@ -8,7 +8,7 @@ export class MonthDay extends PureComponent {
       <div>
         <p>{date.format("DD/MM")}</p>
         {reminders.map(r => 
-          <p>{`${r.description} (${r.datetime.format("hh:mm a")}, ${r.city})`}</p>
+          <p>{`${r.description} (${r.datetime.format("hh:mm a")}${r.city ? `, ${r.city}` : ''})`}</p>
         )}
       </div>
     );
