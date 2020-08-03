@@ -5,7 +5,9 @@ import MainSection from '../components/MainSection'
 
 
 const mapStateToProps = state => ({
-  reminders: state.reminders
+  reminderEditing: state.reminderEditing !== null ? 
+    state.reminders.find(r => r.id === state.reminderEditing) :
+    null
 })
 
 

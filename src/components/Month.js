@@ -30,7 +30,9 @@ const Month = ({ reminders, actions }) =>
       return <MonthDay 
         key={date.format("D")}
         date={date}
-        reminders={remindersByDate(date, reminders)} />
+        reminders={remindersByDate(date, reminders)}
+        onEdit={actions.setReminderEditing}
+      />
     }
     )}
     </div>

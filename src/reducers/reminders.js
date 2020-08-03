@@ -1,10 +1,11 @@
 import {
   ADD_REMINDER,
+  UPDATE_REMINDER,
 } from '../redux/ActionTypes'
 
 const initialState = []
 
-export default function todos(state = initialState, action) {
+export default function reminders(state = initialState, action) {
   switch (action.type) {
     case ADD_REMINDER:
       return [
@@ -13,9 +14,22 @@ export default function todos(state = initialState, action) {
           description: action.description,
           datetime: action.datetime,
           city: action.city,
-          color: action.color
+          color: action.color,
+          id: state.reduce((maxId, r) => Math.max(r.id, maxId), -1) + 1,
         }
       ]
+
+    case UPDATE_REMINDER:
+      return state.map(r =>
+        r.id === action.id ?
+          { ...r, 
+            description: action.description,
+            datetime: action.datetime,
+            city: action.city,
+            color: action.color
+          } :
+          r
+      )
 
     default:
       return state

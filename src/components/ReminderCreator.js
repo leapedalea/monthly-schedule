@@ -4,12 +4,24 @@ import { SketchPicker } from 'react-color';
 
 export class ReminderCreator extends Component {
   state = {
-    description: '',
-    datetime: '', 
-    city: '',
-    color: '#fff',
+    editing: this.props.id >= 0,
+    description: this.props.description || '',
+    datetime: this.props.datetime || '',
+    city: this.props.city || '',
+    color: this.props.color || '#fff',
     pickingColor: false,
     error: ''
+  }
+
+  // clear inputs
+  clearInputs = () => {
+    this.setState({   
+      description: '',
+      datetime: '',
+      city: '',
+      pickingColor: false,
+      error: ''
+    })
   }
 
   handleSubmit = () => {
@@ -25,20 +37,18 @@ export class ReminderCreator extends Component {
     else if (!this.state.datetime)
       this.setState({error: 'A date is required'});
 
-    // everything ok
+    // everything ok, save
     else {
-      // save
       this.props.onSave(this.state.description, this.state.datetime, this.state.city, this.state.color)
-      
-      // clear inputs
-      this.setState({   
-        description: '',
-        datetime: '',
-        city: '',
-        pickingColor: false,
-        error: ''
-      })
+      this.clearInputs();
     }
+  }
+
+  handleCancel = () => {
+    this.clearInputs();
+
+    if (this.state.editing >= 0)
+      this.props.onCancel();
   }
 
   handleDescriptionChange = e => {
@@ -53,7 +63,7 @@ export class ReminderCreator extends Component {
     this.setState({ city: e.target.value })
   }
 
-  handleColorChange = (color) => {
+  handleColorChange = color => {
     this.setState({ color: color.hex });
   }
 
@@ -107,7 +117,11 @@ export class ReminderCreator extends Component {
         <button
           type="button"
           onClick={this.handleSubmit}
-        >Add reminder</button>
+        >{this.state.editing ? 'Update' : 'Create'}</button>
+        <button
+          type="button"
+          onClick={this.handleCancel}
+        >Cancel</button>
       </Fragment>
     );
   }
