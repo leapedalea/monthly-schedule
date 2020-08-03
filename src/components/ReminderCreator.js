@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import DateTime from 'react-datetime';
+import { SketchPicker } from 'react-color';
 
 export class ReminderCreator extends Component {
   state = {
-    description: this.props.text || '',
-    datetime: this.props.datetime || '', 
-    city: this.props.city || '',
+    description: '',
+    datetime: '', 
+    city: '',
+    color: '#fff',
+    pickingColor: false,
     error: ''
   }
 
@@ -49,6 +52,14 @@ export class ReminderCreator extends Component {
     this.setState({ city: e.target.value })
   }
 
+  handleColorChange = (color) => {
+    this.setState({ color: color.hex });
+  }
+
+  toggleColorPicker = () => {
+    this.setState({ pickingColor: ! this.state.pickingColor});
+  }
+
   render() {
     return (
       <Fragment>
@@ -74,11 +85,28 @@ export class ReminderCreator extends Component {
           placeholder="Insert city"
           value={this.state.city}
           onChange={this.handleCityChange} />
+        
+        <label>Color</label>
+        <div style={{
+          width: '3em',
+          height: '1em',
+          border: '2px solid black',
+          background: this.state.color
+        }}></div>
+        {this.state.pickingColor && <SketchPicker 
+          color={this.state.color}
+          onChange={this.handleColorChange}
+        />}
+        <button
+          type="button"
+          onClick={this.toggleColorPicker}
+        >{this.state.pickingColor ? 'Done' : 'Change color'}</button>
+
         <p>{this.state.error}</p>
         <button
           type="button"
           onClick={this.handleSubmit}
-        >New reminder</button>
+        >Add reminder</button>
       </Fragment>
     );
   }
