@@ -12,10 +12,12 @@
   }
 
   &__day-name {
+    font-size: 1.2em;
+    line-height: 2;
+    text-align: center;
     background: blue;
     color: #fff;
     font-weight: 600;
-    text-align: center;
   }
 
   &__day {
@@ -33,5 +35,36 @@
     position: absolute;
     top: 5px;
     left: 5px;
+  }
+}
+
+
+// Reminder 
+.c_reminder {
+  cursor: pointer;
+  position: relative;
+  padding-left: 1.5em;
+
+  &__color-label {
+    position: absolute;
+    top: -.2em;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin: 0 2px;
+  }
+
+  &__time {
+    font-size: .8em;
+    display: block;
+  }
+
+  &__description {
+    line-height: 1.2;
+  }
+
+  &__city {
+    font-style: italic;
   }
 }

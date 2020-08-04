@@ -5,16 +5,11 @@ export class ReminderItem extends PureComponent {
     const { description, time, city, color, onEdit } = this.props
 
     return (
-      <div>
-        <span style={{
-          display: 'inline-block',
-          width: '1em',
-          height: '1em',
-          'border-radius': '50%',
-          background: color
-        }}></span>
-        <span> {`${description} (${time}${city ? `, ${city}` : ''})`}</span>
-        <button onClick={onEdit}>Edit</button>
+      <div className="c_reminder" onClick={onEdit}>
+        <span className="c_reminder__color-label" style={{background: color}}></span>
+        <span className="c_reminder__time">{time}</span>
+        <span className="c_reminder__description">{description}</span>
+        {city ? <span className="c_reminder__city"> ({city})</span> : ''}
       </div>
     );
   }
