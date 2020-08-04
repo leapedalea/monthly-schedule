@@ -3,15 +3,19 @@ import * as moment from 'moment'
 
 import MonthDay from '../components/MonthDay'
 
-const getDaysByMonth = monthDate => {
+const getMonthWeeks = monthDate => {
   const date = monthDate || new Date(),
     days = [];
-  let monthCount = moment(date).daysInMonth(),
-    current;
+  const firstMonthDay = moment(date).startOf('month');
+  const lastMonthDay = moment(date).endOf('month');
+  const firstSunday = moment(firstMonthDay).subtract(firstMonthDay.date(), 'days');
+  const weeksCount = moment(lastMonthDay).week() - moment(firstMonthDay).week();
+  
+  let current;
 
-  for (let i = monthCount; i > 0; i--) {
-    current = moment(date).date(i);
-    days.unshift(current);
+  for (let i = 0; i < weeksCount * 7; i++) {
+    current = moment(firstSunday).add(i, 'days');
+    days.push(current);
   }
 
   return days;
@@ -25,16 +29,18 @@ const remindersByDate = (date, reminders) => {
 
 const Month = ({ reminders, actions }) =>
   (
-    <div>
-    {getDaysByMonth().map(date => {
-      return <MonthDay 
-        key={date.format("D")}
+    <div className="c_month">
+    {moment.weekdays().map(day => (
+      <p className="c_month__day-name">{day}</p>
+    ))}
+    {getMonthWeeks().map(date => (
+      <MonthDay 
+        key={date.format("DD/MM")}
         date={date}
         reminders={remindersByDate(date, reminders)}
         onEdit={actions.setReminderEditing}
       />
-    }
-    )}
+    ))}
     </div>
   )
 
