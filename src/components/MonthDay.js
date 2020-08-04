@@ -9,7 +9,7 @@ export class MonthDay extends PureComponent {
 
     return (
       <div className="c_month__day c_day">
-        <p className="c_day__date">{date.format("D")}</p>
+        <p className="c_day__date">{date.format("DD/MM")}</p>
         {reminders.map((r, index) => 
           <ReminderItem
             key={index}

@@ -5,7 +5,8 @@ import Month from '../components/Month'
 
 
 const mapStateToProps = state => ({
-  reminders: state.reminders
+  reminders: state.reminders,
+  month: state.month
 })
 
 
