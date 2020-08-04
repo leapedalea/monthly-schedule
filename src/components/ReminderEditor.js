@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import DateTime from 'react-datetime';
 import { SketchPicker } from 'react-color';
 
@@ -73,8 +73,11 @@ export class ReminderEditor extends Component {
 
   render() {
     return (
-      <Fragment>
-        <label htmlFor="description">Description</label>
+      <div className="c_reminder-editor">
+        <label
+          htmlFor="description"
+          className="c_reminder-editor__label"
+        >Description</label>
         <textarea
           type="text"
           id="description"
@@ -83,13 +86,19 @@ export class ReminderEditor extends Component {
           onChange={this.handleDescriptionChange} />
         <span>{`${30 - this.state.description.length}`}</span>
 
-        <label htmlFor="date">Date</label>
+        <label
+          htmlFor="date"
+          className="c_reminder-editor__label"
+        >Date</label>
         <DateTime 
           id="date"
           value={this.state.datetime}
           onChange={this.handleDateTimeChange} />
 
-        <label htmlFor="city">City</label>
+        <label
+          htmlFor="city"
+          className="c_reminder-editor__label"
+        >City</label>
         <input
           type="text"
           id="city"
@@ -97,21 +106,18 @@ export class ReminderEditor extends Component {
           value={this.state.city}
           onChange={this.handleCityChange} />
         
-        <label>Color</label>
+        <label className="c_reminder-editor__label">Color</label>
         <div style={{
           width: '3em',
           height: '1em',
           border: '2px solid black',
           background: this.state.color
-        }}></div>
+        }}
+          onClick={this.toggleColorPicker}></div>
         {this.state.pickingColor && <SketchPicker 
           color={this.state.color}
           onChange={this.handleColorChange}
         />}
-        <button
-          type="button"
-          onClick={this.toggleColorPicker}
-        >{this.state.pickingColor ? 'Done' : 'Change color'}</button>
 
         <p>{this.state.error}</p>
         <button
@@ -122,7 +128,7 @@ export class ReminderEditor extends Component {
           type="button"
           onClick={this.handleCancel}
         >Cancel</button>
-      </Fragment>
+      </div>
     );
   }
 }
