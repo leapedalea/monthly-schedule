@@ -23,7 +23,6 @@ const MainSection = ({ reminderEditing, actions }) => (
         }
         <MonthView />
       </div>
-      <div id="day">Day</div>
     </main>
   )
 

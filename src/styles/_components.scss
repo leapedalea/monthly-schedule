@@ -1,0 +1,37 @@
+// Reminder Editor
+
+// Month
+.c_month {
+  display: flex;
+  flex-flow: row wrap;
+
+  &__day-name,
+  &__day{
+    flex: 1 0 calc(100% / 7);
+    margin: 0;
+  }
+
+  &__day-name {
+    background: blue;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__day {
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+}
+
+.c_day {
+  position: relative;
+  min-height: 100px;
+  padding-top: 2em;
+
+  &__date {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+}

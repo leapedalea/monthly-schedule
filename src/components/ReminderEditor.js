@@ -74,7 +74,7 @@ export class ReminderEditor extends Component {
   render() {
     return (
       <Fragment>
-        <label for="description">Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
           type="text"
           id="description"
@@ -83,13 +83,13 @@ export class ReminderEditor extends Component {
           onChange={this.handleDescriptionChange} />
         <span>{`${30 - this.state.description.length}`}</span>
 
-        <label for="date">Date</label>
+        <label htmlFor="date">Date</label>
         <DateTime 
           id="date"
           value={this.state.datetime}
           onChange={this.handleDateTimeChange} />
 
-        <label for="city">City</label>
+        <label htmlFor="city">City</label>
         <input
           type="text"
           id="city"

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 
 import reducer from './reducers'
 import Main from './containers/Main';
-import './App.css';
+import './App.scss';
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(

@@ -8,8 +8,8 @@ export class MonthDay extends PureComponent {
     const { date, reminders } = this.props
 
     return (
-      <div>
-        <p>{date.format("DD/MM")}</p>
+      <div className="c_month__day c_day">
+        <p className="c_day__date">{date.format("D")}</p>
         {reminders.map((r, index) => 
           <ReminderItem
             key={index}
