@@ -54,6 +54,7 @@ const Month = ({ month, reminders, actions }) =>
             reminders={remindersByDate(date, reminders)}
             onEdit={actions.setReminderEditing}
             onDelete={actions.deleteReminder}
+            onClearDay={() => actions.deleteRemindersByDay(date)}
           />
         ))}
       </div>

@@ -3,7 +3,7 @@ import ReminderItem from '../components/ReminderItem'
 
 export class MonthDay extends PureComponent {
   handleEdit = index => () => this.props.onEdit(index);
-  
+
   handleDelete = index => () => this.props.onDelete(index);
 
   render() {
@@ -11,6 +11,10 @@ export class MonthDay extends PureComponent {
 
     return (
       <div className="c_month__day c_day">
+        <button
+          type="button"
+          onClick={this.props.onClearDay}
+          >Clear all</button>
         <p className="c_day__date">{date.format("DD/MM")}</p>
         {reminders.map((r, index) => 
           <ReminderItem
