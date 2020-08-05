@@ -1,6 +1,7 @@
 import {
   ADD_REMINDER,
   UPDATE_REMINDER,
+  DELETE_REMINDER,
 } from '../redux/ActionTypes'
 
 const initialState = []
@@ -29,6 +30,11 @@ export default function reminders(state = initialState, action) {
             color: action.color
           } :
           r
+      )
+
+    case DELETE_REMINDER:
+      return state.filter(r =>
+        r.id !== action.id
       )
 
     default:

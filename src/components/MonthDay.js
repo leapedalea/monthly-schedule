@@ -3,6 +3,8 @@ import ReminderItem from '../components/ReminderItem'
 
 export class MonthDay extends PureComponent {
   handleEdit = index => () => this.props.onEdit(index);
+  
+  handleDelete = index => () => this.props.onDelete(index);
 
   render() {
     const { date, reminders } = this.props
@@ -18,6 +20,7 @@ export class MonthDay extends PureComponent {
             city={r.city}
             color={r.color}
             onEdit={this.handleEdit(r.id)}
+            onDelete={this.handleDelete(r.id)}
           />
         )}
       </div>
