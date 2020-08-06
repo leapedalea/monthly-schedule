@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Requirements
+
+To run the project, a config filed must be placed in the src/ directory with following structure:<br />
+<pre>
+  export const openWeatherApi = {
+    secretKey: `YOUR_API_KEY`
+  };
+</pre>
+where YOUR_API_KEY is a valid api key from a free account at OpenWeather.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
