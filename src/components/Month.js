@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react'
-import * as moment from 'moment'
+import React from 'react';
+import * as moment from 'moment';
+import { GrLinkPrevious, GrLinkNext } from 'react-icons/gr';
 
 import MonthDay from '../components/MonthDay'
 
@@ -44,37 +45,54 @@ const remindersByDate = (date, reminders) => {
     .sort((a, b) => a.datetime.diff(b.datetime))
 }
 
-const Month = ({ month, reminders, cityWeather, actions }) =>
-  (
-    <Fragment>
-      <h1>{moment().month(month).format("MMMM")}</h1>
-
-      {month > 0 && <button
+const Month = ({ month, reminders, cityWeather, actions }) => (
+  <div className="c_month">
+    <div className="c_month__nav">
+      <button
         type="button"
+        className="c_month__nav__button c_month__nav__button--prev"
+        disable={month > 0}
         onClick={() => actions.setMonth(month - 1)}
-      >Prev month</button>}
-      {month < 11 && <button
-        type="button"
-        onClick={() => actions.setMonth(month + 1)}
-      >Next month</button>}
+      >
+        <GrLinkPrevious />
+        <span 
+          className="l_screen-reader-text"
+        >Prev month</span>
+      </button>
+      <h1 className="c_month__name">{
+        moment().month(month).format("MMMM")
+      }</h1>
 
-      <div className="c_month">
-        {moment.weekdays().map(day => (
-          <p className="c_month__day-name" key={day}>{day}</p>
-        ))}
-        {getMonthWeeks(month).map((date, index) => (
-          <MonthDay 
-            key={date.format("DD/MM")}
-            cityWeather={getDateWeather(cityWeather, date)}
-            date={date}
-            reminders={remindersByDate(date, reminders)}
-            onEdit={actions.setReminderEditing}
-            onDelete={actions.deleteReminder}
-            onClearDay={() => actions.deleteRemindersByDay({ date })}
-          />
-        ))}
-      </div>
-    </Fragment>
-  )
+      <button
+        type="button"
+        className="c_month__nav__button c_month__nav__button--next"
+        disable={month < 11}
+        onClick={() => actions.setMonth(month + 1)}
+      >
+        <GrLinkNext />
+        <span 
+          className="l_screen-reader-text"
+        >Next month</span>
+      </button>
+    </div>
+
+    <div className="c_month__calendar">
+      {moment.weekdays().map(day => (
+        <p className="c_month__calendar__day-name" key={day}>{day}</p>
+      ))}
+      {getMonthWeeks(month).map((date, index) => (
+        <MonthDay 
+          key={date.format("DD/MM")}
+          cityWeather={getDateWeather(cityWeather, date)}
+          date={date}
+          reminders={remindersByDate(date, reminders)}
+          onEdit={actions.setReminderEditing}
+          onDelete={actions.deleteReminder}
+          onClearDay={() => actions.deleteRemindersByDay({ date })}
+        />
+      ))}
+    </div>
+  </div>
+);
 
 export default Month;

@@ -10,7 +10,7 @@ export class MonthDay extends PureComponent {
     const { date, reminders, cityWeather } = this.props
 
     return (
-      <div className="c_month__day c_day">
+      <div className="c_month__calendar__day c_day">
         <button
           type="button"
           onClick={this.props.onClearDay}

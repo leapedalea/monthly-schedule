@@ -1,0 +1,11 @@
+.c_day {
+  position: relative;
+  min-height: 100px;
+  padding-top: 2em;
+
+  &__date {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+}

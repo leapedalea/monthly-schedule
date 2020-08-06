@@ -1,36 +1,63 @@
 .c_month {
-  display: flex;
-  flex-flow: row wrap;
+  padding: 2em 1em;
 
-  &__day-name,
-  &__day{
-    flex: 1 0 calc(100% / 7);
-    margin: 0;
+  &__nav {
+    position: relative;
+
+    &__button {
+      position: absolute;
+      top: 4px;
+      height: 2em;
+      width: 2em;
+
+      color: $white;
+      background: $color__main__foreground;
+      border-radius: 50%;
+
+      path {
+        stroke: $white;
+      }
+
+      &--prev {
+        left: 0;
+      }
+
+      &--next {
+        right: 0;
+      }
+    }
   }
 
-  &__day-name {
-    font-size: 1.2em;
-    line-height: 2;
+  &__name {
+    font-size: 2.5em;
+    letter-spacing: 5px;
+    line-height: 1;
     text-align: center;
-    background: blue;
-    color: #fff;
-    font-weight: 600;
+    text-transform: uppercase;
   }
 
-  &__day {
-    border: 1px solid #000;
-    box-sizing: border-box;
-  }
-}
+  &__calendar {
+    display: flex;
+    flex-flow: row wrap;
+  
+    border: 1px solid $beta;
 
-.c_day {
-  position: relative;
-  min-height: 100px;
-  padding-top: 2em;
+    &__day-name,
+    &__day{
+      flex: 1 0 calc(100% / 7);
+      margin: 0;
+    }
 
-  &__date {
-    position: absolute;
-    top: 5px;
-    left: 5px;
+    &__day-name {
+      background: $beta;
+      color: #fff;
+      font-size: 1.2em;
+      line-height: 3;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: .8em;
+      text-align: center;
+      text-transform: uppercase;
+    }
   }
 }
