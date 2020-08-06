@@ -28,7 +28,10 @@ export default class OpenWeatherApi {
           return forecastData.daily.map(
             day => ({
               date: day.dt,
-              forecast: day.weather[0].description
+              forecast: {
+                description: day.weather[0].description,
+                icon: day.weather[0].icon
+              }
             }));
         }
 
