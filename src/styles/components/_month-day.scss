@@ -20,7 +20,7 @@
   }
 
   &__button--clear {
-    display: none;
+    display: block;
     position: absolute;
     top: 1px;
     right: 5px;
@@ -34,11 +34,5 @@
     letter-spacing: 1px;
     font-weight: 600;
     text-transform: uppercase;
-  }
-
-  &:hover {
-    .c_day__button--clear {
-      display: block;
-    }
   }
 }

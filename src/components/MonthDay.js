@@ -17,11 +17,12 @@ export class MonthDay extends PureComponent {
           disable ? ' c_day--disable' : ''
         }`
       }>
-        <button
-          type="button"
-          className="c_day__button--clear"
-          onClick={this.props.onClearDay}
-          >Clear all</button>
+        {reminders.length > 0 ? <button
+            type="button"
+            className="c_day__button--clear"
+            onClick={this.props.onClearDay}
+          >Clear all</button> :
+        ''}
         <span 
           className="c_day__date">{
           date.format("DD")
