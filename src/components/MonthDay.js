@@ -2,8 +2,23 @@ import React, { PureComponent } from 'react';
 import ReminderItem from '../components/ReminderItem'
 
 export class MonthDay extends PureComponent {
+
+  /**
+   * Create a handler for a reminder edition with the id
+   *
+   * @param {int} Reminder id
+   *
+   * @return {Function} Call to props given handler
+   */
   handleEdit = id => () => this.props.onEdit({ id });
 
+  /**
+   * Create a handler for a reminder deletion with the id
+   *
+   * @param {int} Reminder id
+   *
+   * @return {Function} Call to props given handler
+   */
   handleDelete = id => () => this.props.onDelete({ id });
 
   render() {

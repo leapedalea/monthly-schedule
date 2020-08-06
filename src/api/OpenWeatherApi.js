@@ -9,6 +9,13 @@ export default class OpenWeatherApi {
     this.baseApiUrl = 'http://api.openweathermap.org/data/2.5';
   }
 
+  /**
+   * Get a 7-day forecast for a city
+   *
+   * @param {string} City name
+   *
+   * @return {Array} List of weather forecast objects { day, forecast }
+   */
   getForecast(cityName) {
     const cityCoord = this.getCityCoordinates(cityName);
     const endpointForecast = this.baseApiUrl + '/onecall';
@@ -40,7 +47,14 @@ export default class OpenWeatherApi {
       
     return promise;
   }
-
+  
+  /**
+   * Get a city coordinates by its name
+   *
+   * @param {string} City name
+   *
+   * @return {Object} Coordinates object { lat, lon }
+   */
   getCityCoordinates(cityName) {
     return CityList.find(city => city.name === cityName).coord;
   }

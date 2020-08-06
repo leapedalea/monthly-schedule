@@ -26,6 +26,15 @@ const MainSection = ({ reminderEditing, cityWeather, actions }) => (
     </main>
   );
 
+/**
+ * Create handler for reminder creation
+ * with given data and actions
+ *
+ * @param {Object} State weather
+ * @param {Object} Redux actions
+ *
+ * @return {Function} Handler for reminder creation
+ */
 const handleAddReminder = (cityWeather, actions) => payload => {
   const { city, datetime } = payload;
 
@@ -39,6 +48,15 @@ const handleAddReminder = (cityWeather, actions) => payload => {
   }
 };
 
+/**
+ * Create handler for reminder update
+ * with given data and actions
+ *
+ * @param {int} State reminder in edition id
+ * @param {Object} Redux actions
+ *
+ * @return {Function} Handler for reminder update
+ */
 const handleUpdateReminder = (reminderEditing, actions) => payload => {
   actions.updateReminder({
     id: reminderEditing.id, 

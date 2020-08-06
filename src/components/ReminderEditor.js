@@ -13,7 +13,9 @@ export class ReminderEditor extends Component {
     error: ''
   }
 
-  // clear inputs
+  /**
+   * Clears all inputs (except color)
+   */
   clearInputs = () => {
     this.setState({   
       description: '',
@@ -24,6 +26,9 @@ export class ReminderEditor extends Component {
     })
   }
 
+  /**
+   * Validate and submit if everything is good
+   */
   handleSubmit = () => {
     const { description, datetime, city, color } = this.state;
 
@@ -46,6 +51,9 @@ export class ReminderEditor extends Component {
     }
   }
 
+  /**
+   * Clears inputs. If editing, cancel and return to creation mode.
+   */
   handleCancel = () => {
     this.clearInputs();
 
@@ -53,22 +61,37 @@ export class ReminderEditor extends Component {
       this.props.onCancel();
   }
 
+  /**
+   * Update state for description change.
+   */
   handleDescriptionChange = e => {
     this.setState({ description: e.target.value })
   }
 
+  /**
+   * Update state for datetime change.
+   */
   handleDateTimeChange = moment => {
     this.setState({ datetime: moment })
   }
 
+  /**
+   * Update state for city change.
+   */
   handleCityChange = e => {
     this.setState({ city: e.target.value })
   }
 
+  /**
+   * Update state for color change.
+   */
   handleColorChange = color => {
     this.setState({ color: color.hex });
   }
 
+  /**
+   * Toggle visibility of color picker input
+   */
   toggleColorPicker = () => {
     this.setState({ pickingColor: ! this.state.pickingColor});
   }

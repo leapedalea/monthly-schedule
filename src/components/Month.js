@@ -4,6 +4,15 @@ import { GrLinkPrevious, GrLinkNext } from 'react-icons/gr';
 
 import MonthDay from '../components/MonthDay'
 
+
+/**
+ * Get days to display in given month,
+ * so all weeks are complete (Sun-Sat)
+ *
+ * @param {int} Month (zero based)
+ *
+ * @return {Object} List of days to display
+ */
 const getMonthWeeks = month => {
   const monthDate = moment().month(month >= 0 ? month : new Date().getMonth());
   const firstMonthDay = moment(monthDate).startOf('month');
@@ -35,7 +44,15 @@ const getDateWeather = (cityWeather, date) => (
     )
 );
 
-const remindersByDate = (date, reminders) => {
+/**
+ * Get reminders for a specific date from props reminders.
+ *
+ * @param {Object} List of all reminders
+ * @param {Moment} Date to retrieve reminders
+ *
+ * @return {Array} List of date reminders
+ */
+const remindersByDate = (reminders, date) => {
   return reminders
     .filter(r => r.datetime.isSame(date, 'day'))
     .sort((a, b) => a.datetime.diff(b.datetime))
@@ -81,7 +98,7 @@ const Month = ({ month, reminders, cityWeather, actions }) => (
           key={date.format("DD/MM")}
           cityWeather={getDateWeather(cityWeather, date)}
           date={date}
-          reminders={remindersByDate(date, reminders)}
+          reminders={remindersByDate(reminders, date)}
           weekend={index % 7 === 0 || index % 7 === 6}
           disable={date.month() !== month}
           onEdit={actions.setReminderEditing}

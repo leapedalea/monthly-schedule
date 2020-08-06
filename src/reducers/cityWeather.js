@@ -15,11 +15,13 @@ export default function cityWeather(state = initialState, action) {
 
       return action.payload.forecast.map((day, index) => {
         const date = new Date(day.date * 1000); // UNIX date conversion
+        // try to get weather for current day
         let currentWeather = state
           .find(w => moment(w.date).isSame(date, 'day')) || {};
-
+        // if not, assign date
         if (!currentWeather.date)
           currentWeather.date = date;
+        // save weather for given city
         currentWeather[action.payload.city] = day.forecast;
 
         return currentWeather
