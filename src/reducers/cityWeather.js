@@ -1,3 +1,4 @@
+import * as moment from 'moment'
 import {
   CITY_FORECAST_FETCH_FAILED,
   CITY_FORECAST_FETCH_SUCCEEDED
@@ -15,7 +16,7 @@ export default function cityWeather(state = initialState, action) {
       return action.payload.forecast.map((day, index) => {
         const date = new Date(day.date * 1000); // UNIX date conversion
         let currentWeather = state
-          .find(w => w.date === date) || {};
+          .find(w => moment(w.date).isSame(date, 'day')) || {};
 
         if (!currentWeather.date)
           currentWeather.date = date;
