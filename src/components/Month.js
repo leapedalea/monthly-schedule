@@ -62,7 +62,7 @@ const Month = ({ month, reminders, cityWeather, actions }) =>
         {moment.weekdays().map(day => (
           <p className="c_month__day-name" key={day}>{day}</p>
         ))}
-        {getMonthWeeks(month).map((date, index) => (<div>
+        {getMonthWeeks(month).map((date, index) => (
           <MonthDay 
             key={date.format("DD/MM")}
             cityWeather={getDateWeather(cityWeather, date)}
@@ -72,7 +72,7 @@ const Month = ({ month, reminders, cityWeather, actions }) =>
             onDelete={actions.deleteReminder}
             onClearDay={() => actions.deleteRemindersByDay({ date })}
           />
-        </div>))}
+        ))}
       </div>
     </Fragment>
   )

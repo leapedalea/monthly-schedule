@@ -1,4 +1,3 @@
-import * as moment from 'moment'
 import {
   ADD_REMINDER,
   UPDATE_REMINDER,
@@ -18,7 +17,9 @@ export default function reminders(state = initialState, action) {
           datetime: action.datetime,
           city: action.city,
           color: action.color,
-          id: state.reduce((maxId, r) => Math.max(r.id, maxId), -1) + 1,
+          id: state.reduce((maxId, r) => 
+            Math.max(r.id, maxId), -1
+          ) + 1,
         }
       ]
 
@@ -40,9 +41,8 @@ export default function reminders(state = initialState, action) {
       )
 
     case DELETE_REMINDERS_BY_DATE:
-    console.log(action.datetime)
       return state.filter(r =>
-        !moment(r.datetime).isSame(action.date)
+        !r.datetime.isSame(action.date)
       )
 
     default:

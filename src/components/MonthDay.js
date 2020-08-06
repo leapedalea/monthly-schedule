@@ -15,7 +15,7 @@ export class MonthDay extends PureComponent {
           type="button"
           onClick={this.props.onClearDay}
           >Clear all</button>
-        <p className="c_day__date">{date.format("DD/MM")}</p>
+        <p className="c_day__date">{date.format("DD")}</p>
         {reminders.map((r, index) => 
           <ReminderItem
             key={index}
