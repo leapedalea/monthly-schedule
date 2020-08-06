@@ -3,16 +3,14 @@ import OpenWeatherApi from '../api/OpenWeatherApi';
 
 function* fetchCityWeather(action) {
   const owapi = new OpenWeatherApi('c369621dc49ef59144a85feefd95935a');
+  const { city } = action;
 
   try {
     const forecast = yield call(
       owapi.getForecast.bind(owapi), 
-      action.city
+      city
     );
-    const payload = {
-      city: action.city,
-      forecast
-    };
+    const payload = { city, forecast };
 
     yield put({ type: 'CITY_FORECAST_FETCH_SUCCEEDED', payload });
   } catch (e) {

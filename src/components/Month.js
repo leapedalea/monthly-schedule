@@ -70,7 +70,7 @@ const Month = ({ month, reminders, cityWeather, actions }) =>
             reminders={remindersByDate(date, reminders)}
             onEdit={actions.setReminderEditing}
             onDelete={actions.deleteReminder}
-            onClearDay={() => actions.deleteRemindersByDay(date)}
+            onClearDay={() => actions.deleteRemindersByDay({ date })}
           />
         </div>))}
       </div>

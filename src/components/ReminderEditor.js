@@ -41,7 +41,7 @@ export class ReminderEditor extends Component {
 
     // everything ok, save
     else {
-      this.props.onSave(description, datetime, city, color)
+      this.props.onSave({ description, datetime, city, color })
       this.clearInputs();
     }
   }

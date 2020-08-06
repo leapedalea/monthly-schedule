@@ -8,23 +8,25 @@ const MainSection = ({ reminderEditing, actions }) => (
       <div>
         <button
           type="button"
-          onClick={() => actions.setReminderEditing(null)}
+          onClick={() => actions.setReminderEditing({ id: null })}
           >Create new reminder
         </button>
         {reminderEditing ?
           <ReminderEditor
             key={reminderEditing.id}
-            onSave={ (...args) => {
-              actions.updateReminder(reminderEditing.id, ...args)
-              actions.setReminderEditing(null)
+            onSave={payload => {
+              actions.updateReminder({ id: reminderEditing.id, ...payload })
+              actions.setReminderEditing({ id: null })
             }}
-            onCancel={() => actions.setReminderEditing(null)}
+            onCancel={() => actions.setReminderEditing({ id: null })}
             {...reminderEditing} /> :
           <ReminderEditor
-            onSave={(description, datetime, city, color) => {
-              actions.addReminder(description, datetime, city, color)
+            onSave={payload => {
+              const { city, datetime } = payload;
+
+              actions.addReminder(payload)
               if (datetime.diff(moment(), 'days') < 7) {
-                actions.requestCityForecast(city)
+                actions.requestCityForecast({ city })
               }
             }} />
         }

@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import ReminderItem from '../components/ReminderItem'
 
 export class MonthDay extends PureComponent {
-  handleEdit = index => () => this.props.onEdit(index);
+  handleEdit = id => () => this.props.onEdit({ id });
 
-  handleDelete = index => () => this.props.onDelete(index);
+  handleDelete = id => () => this.props.onDelete({ id });
 
   render() {
     const { date, reminders, cityWeather } = this.props

@@ -10,7 +10,7 @@ import Month from '../components/Month'
 class MonthView extends Component {
   componentDidMount() {
     const { reminders, actions } = this.props;
-    
+
     // get cities in next 7 days reminders
     const uniqueCities = reminders.filter(r => {
       const diff = r.datetime.diff(moment(), 'days');
@@ -23,7 +23,9 @@ class MonthView extends Component {
     []);
 
     // request weather forecasts
-    uniqueCities.forEach(c => actions.requestCityForecast(c))
+    uniqueCities.forEach(city => 
+      actions.requestCityForecast({ city })
+    )
   }
 
   render() {
