@@ -1,7 +1,23 @@
 import React, { PureComponent } from 'react';
-import ReminderItem from '../components/ReminderItem'
+import PropTypes from 'prop-types';
+import ReminderItem from '../components/ReminderItem';
 
 export class MonthDay extends PureComponent {
+  static propTypes = {
+    date: PropTypes.object.isRequired,
+    reminders: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      datetime: PropTypes.object.isRequired,
+      color: PropTypes.string.isRequired,
+      city: PropTypes.string
+    }).isRequired).isRequired,
+    cityWeather: PropTypes.object,
+    weekend: PropTypes.bool,
+    disable: PropTypes.bool,
+    onEdit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
+  };
 
   /**
    * Create a handler for a reminder edition with the id
@@ -49,7 +65,7 @@ export class MonthDay extends PureComponent {
             time={r.datetime.format("hh:mm a")}
             city={r.city}
             color={r.color}
-            cityWeather={cityWeather ? cityWeather[r.city] : ''}
+            cityWeather={cityWeather ? cityWeather[r.city] : {}}
             onEdit={this.handleEdit(r.id)}
             onDelete={this.handleDelete(r.id)}
           />

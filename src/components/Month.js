@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as moment from 'moment';
 import { GrLinkPrevious, GrLinkNext } from 'react-icons/gr';
 
-import MonthDay from '../components/MonthDay'
-
+import MonthDay from '../components/MonthDay';
 
 /**
  * Get days to display in given month,
@@ -56,7 +56,7 @@ const remindersByDate = (reminders, date) => {
   return reminders
     .filter(r => r.datetime.isSame(date, 'day'))
     .sort((a, b) => a.datetime.diff(b.datetime))
-}
+};
 
 const Month = ({ month, reminders, cityWeather, actions }) => (
   <div className="c_month">
@@ -109,5 +109,18 @@ const Month = ({ month, reminders, cityWeather, actions }) => (
     </div>
   </div>
 );
+
+Month.propTypes = {
+  month: PropTypes.number,
+  reminders: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    datetime: PropTypes.object.isRequired,
+    color: PropTypes.string.isRequired,
+    city: PropTypes.string
+  }).isRequired).isRequired,
+  cityWeather: PropTypes.array,
+  actions: PropTypes.object
+}
 
 export default Month;

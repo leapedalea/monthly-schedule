@@ -1,7 +1,16 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { GrFormClose } from 'react-icons/gr';
 
 export class ReminderItem extends PureComponent {
+  static propTypes = {
+    description: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    city: PropTypes.string,
+    color: PropTypes.string.isRequired,
+    cityWeather: PropTypes.object.isRequired
+  };
+
   render() {
     const { description, time, city, color, cityWeather } = this.props
 
@@ -15,7 +24,7 @@ export class ReminderItem extends PureComponent {
           {city ? <span className="c_reminder__city">{city},&nbsp;</span> : ''}
           <span className="c_reminder__time">{time}</span>
         </div>
-        {cityWeather ? <div>
+        {cityWeather.description ? <div>
           <span className="l_screen-reader-text">{
             cityWeather.description
           }</span>

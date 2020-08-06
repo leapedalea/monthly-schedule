@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DateTime from 'react-datetime';
 import { SketchPicker } from 'react-color';
 
 export class ReminderEditor extends Component {
+  static propTypes = {
+    id: PropTypes.number,
+    description: PropTypes.string,
+    datetime: PropTypes.object,
+    city: PropTypes.string,
+    color: PropTypes.string
+  };
+
   state = {
     editing: this.props.id >= 0,
     description: this.props.description || '',
@@ -11,7 +20,7 @@ export class ReminderEditor extends Component {
     color: this.props.color || '#fff',
     pickingColor: false,
     error: ''
-  }
+  };
 
   /**
    * Clears all inputs (except color)
@@ -24,7 +33,7 @@ export class ReminderEditor extends Component {
       pickingColor: false,
       error: ''
     })
-  }
+  };
 
   /**
    * Validate and submit if everything is good
@@ -97,11 +106,14 @@ export class ReminderEditor extends Component {
   }
 
   render() {
+    const { editing, description, datetime, 
+      city, color, pickingColor, error } = this.state;
+
     return (
       <div className="c_reminder-editor">
         <p
           className="c_reminder-editor__instruction"
-          >{this.state.editing ? 
+          >{editing ? 
               'Editing reminder' :
               'Create a new reminder'
           }</p>
@@ -115,12 +127,12 @@ export class ReminderEditor extends Component {
               type="text"
               id="description"
               placeholder="Insert description"
-              value={this.state.description}
+              value={description}
               className="c_reminder-editor__input"
               onChange={this.handleDescriptionChange} />
             <span
               className="c_reminder-editor__input__note"
-              >{`${30 - this.state.description.length}`
+              >{`${30 - description.length}`
             }</span>
           </div>
 
@@ -131,7 +143,7 @@ export class ReminderEditor extends Component {
             >Date & time</label>
             <DateTime 
               id="date"
-              value={this.state.datetime}
+              value={datetime}
               onChange={this.handleDateTimeChange} />
             </div>
 
@@ -144,7 +156,7 @@ export class ReminderEditor extends Component {
               type="text"
               id="city"
               placeholder="Insert city"
-              value={this.state.city}
+              value={city}
               className="c_reminder-editor__input"
               onChange={this.handleCityChange} />
             </div>
@@ -153,22 +165,22 @@ export class ReminderEditor extends Component {
             <label className="c_reminder-editor__label">Select color</label>
             <div 
               className="c_reminder-editor__input c_reminder-editor__input--color"
-              style={{background: this.state.color}}
+              style={{background: color}}
               onClick={this.toggleColorPicker}>
-              {this.state.pickingColor && <SketchPicker 
-                color={this.state.color}
+              {pickingColor && <SketchPicker 
+                color={color}
                 onChange={this.handleColorChange}
               />}
             </div>
           </div>
         </div>
 
-        <p>{this.state.error}</p>
+        <p>{error}</p>
         <button
           type="button"
           className="c_reminder-editor__button c_button"
           onClick={this.handleSubmit}
-        >{this.state.editing ? 'Update' : 'Create'}</button>
+        >{editing ? 'Update' : 'Create'}</button>
         <button
           type="button"
           className="c_reminder-editor__button c_button"
