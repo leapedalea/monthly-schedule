@@ -5,16 +5,8 @@ import MonthView from '../containers/MonthView';
 import ReminderEditor from '../components/ReminderEditor';
 
 const MainSection = ({ reminderEditing, cityWeather, actions }) => (
-    <main>
-      <div>
-        <button
-          type="button"
-          onClick={actions.setReminderEditing.bind(
-            actions,
-            { id: null }
-          )}
-          >Create new reminder
-        </button>
+    <main className="c_main">
+      <div className="c_main__detail-view">
         {reminderEditing ?
           <ReminderEditor
             key={reminderEditing.id}
@@ -27,6 +19,8 @@ const MainSection = ({ reminderEditing, cityWeather, actions }) => (
           <ReminderEditor
             onSave={handleAddReminder(cityWeather, actions)} />
         }
+      </div>
+      <div className="c_main__month-view">
         <MonthView />
       </div>
     </main>

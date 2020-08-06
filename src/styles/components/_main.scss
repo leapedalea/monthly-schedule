@@ -1,0 +1,27 @@
+.c_main {
+  display: flex;
+  flex-flow: row nowrap;
+  min-height: 100vh;
+
+  color: $color__main__text;
+  background: $color__main__background;
+
+  button {
+    background: $color__main__foreground;
+  }
+
+  &__detail-view {
+    flex: 0 0 20em;
+
+    color: $color__side__text;
+    background: $color__side__background;
+
+    button {
+      background: $color__side__foreground;
+    }
+  }
+
+  &__month-view {
+    flex: 1 0 500px;
+  }
+}

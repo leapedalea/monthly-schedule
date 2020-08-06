@@ -1,77 +1,11 @@
-// Reminder Editor
+// Main
+@import 'components/_main.scss';
 
 // Month
-.c_month {
-  display: flex;
-  flex-flow: row wrap;
-
-  &__day-name,
-  &__day{
-    flex: 1 0 calc(100% / 7);
-    margin: 0;
-  }
-
-  &__day-name {
-    font-size: 1.2em;
-    line-height: 2;
-    text-align: center;
-    background: blue;
-    color: #fff;
-    font-weight: 600;
-  }
-
-  &__day {
-    border: 1px solid #000;
-    box-sizing: border-box;
-  }
-}
-
-.c_day {
-  position: relative;
-  min-height: 100px;
-  padding-top: 2em;
-
-  &__date {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-  }
-}
-
+@import 'components/_month.scss';
 
 // Reminder 
-.c_reminder {
-  cursor: pointer;
-  position: relative;
-  padding-left: 1.5em;
-
-  &__color-label {
-    position: absolute;
-    top: -.2em;
-    left: 0;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    margin: 0 2px;
-  }
-
-  &__time {
-    font-size: .8em;
-    display: block;
-  }
-
-  &__description {
-    line-height: 1.2;
-  }
-
-  &__city {
-    font-style: italic;
-  }
-}
+@import 'components/_reminder.scss';
 
 // Reminder Editor
-.c_reminder-editor {
-  &__label {
-    display: block;
-  }
-}
+@import 'components/_reminder-editor.scss';

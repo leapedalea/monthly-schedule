@@ -1,5 +1,11 @@
-@import 'styles/_resets.scss';
+@import 'styles/_normalize.scss';
 
 @import 'styles/_react-datetime.scss';
 
+@import 'styles/_variables.scss';
+
+@import 'styles/_typography.scss';
+
 @import 'styles/_components.scss';
+
+@import 'styles/_layouts.scss';
