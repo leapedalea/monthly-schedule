@@ -46,6 +46,7 @@
     &__day{
       flex: 1 0 calc(100% / 7);
       margin: 0;
+      min-width: calc(100% / 7);
     }
 
     &__day-name {

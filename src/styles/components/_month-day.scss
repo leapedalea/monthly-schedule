@@ -2,10 +2,42 @@
   position: relative;
   min-height: 100px;
   padding-top: 2em;
+  border: 1px solid $beta;
+
+  &--weekend {
+    background: rgba(138, 155, 15, .3);
+  }
+
+  &--disable {
+    opacity: .5;
+  }
 
   &__date {
     position: absolute;
     top: 5px;
     left: 5px;
+  }
+
+  &__button--clear {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    color: $white;
+    background: $epsilon;
+    cursor: pointer;
+    
+    font-size: .75em;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    .c_day__button--clear {
+      display: block;
+    }
   }
 }

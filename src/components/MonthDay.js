@@ -7,15 +7,25 @@ export class MonthDay extends PureComponent {
   handleDelete = id => () => this.props.onDelete({ id });
 
   render() {
-    const { date, reminders, cityWeather } = this.props
+    const { date, reminders, cityWeather, weekend, disable } = this.props
 
     return (
-      <div className="c_month__calendar__day c_day">
+      <div className={
+        `c_month__calendar__day c_day ${
+          weekend ? ' c_day--weekend' : ''
+        } ${
+          disable ? ' c_day--disable' : ''
+        }`
+      }>
         <button
           type="button"
+          className="c_day__button--clear"
           onClick={this.props.onClearDay}
           >Clear all</button>
-        <p className="c_day__date">{date.format("DD")}</p>
+        <span 
+          className="c_day__date">{
+          date.format("DD")
+        }</span>
         {reminders.map((r, index) => 
           <ReminderItem
             key={index}

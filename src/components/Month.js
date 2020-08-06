@@ -86,6 +86,8 @@ const Month = ({ month, reminders, cityWeather, actions }) => (
           cityWeather={getDateWeather(cityWeather, date)}
           date={date}
           reminders={remindersByDate(date, reminders)}
+          weekend={index % 7 === 0 || index % 7 === 6}
+          disable={date.month() !== month}
           onEdit={actions.setReminderEditing}
           onDelete={actions.deleteReminder}
           onClearDay={() => actions.deleteRemindersByDay({ date })}
