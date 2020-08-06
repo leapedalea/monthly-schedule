@@ -7,7 +7,7 @@ export class MonthDay extends PureComponent {
   handleDelete = index => () => this.props.onDelete(index);
 
   render() {
-    const { date, reminders } = this.props
+    const { date, reminders, cityWeather } = this.props
 
     return (
       <div className="c_month__day c_day">
@@ -23,6 +23,7 @@ export class MonthDay extends PureComponent {
             time={r.datetime.format("hh:mm a")}
             city={r.city}
             color={r.color}
+            cityWeather={cityWeather ? cityWeather[r.city] : ''}
             onEdit={this.handleEdit(r.id)}
             onDelete={this.handleDelete(r.id)}
           />

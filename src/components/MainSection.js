@@ -1,6 +1,7 @@
 import React from 'react'
 import MonthView from '../containers/MonthView'
 import ReminderEditor from '../components/ReminderEditor'
+import * as moment from 'moment'
 
 const MainSection = ({ reminderEditing, actions }) => (
     <main>
@@ -19,7 +20,13 @@ const MainSection = ({ reminderEditing, actions }) => (
             }}
             onCancel={() => actions.setReminderEditing(null)}
             {...reminderEditing} /> :
-          <ReminderEditor onSave={actions.addReminder} />
+          <ReminderEditor
+            onSave={(description, datetime, city, color) => {
+              actions.addReminder(description, datetime, city, color)
+              if (datetime.diff(moment(), 'days') < 7) {
+                actions.requestCityForecast(city)
+              }
+            }} />
         }
         <MonthView />
       </div>

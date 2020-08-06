@@ -25,21 +25,23 @@ export class ReminderEditor extends Component {
   }
 
   handleSubmit = () => {
+    const { description, datetime, city, color } = this.state;
+
     // no description
-    if (!this.state.description)
+    if (!description)
       this.setState({error: 'A description is required'});
 
     // description too long
-    else if (this.state.description.length > 30)
+    else if (description.length > 30)
       this.setState({error: 'Description must be 30 characters or less'});
 
     // no date
-    else if (!this.state.datetime)
+    else if (!datetime)
       this.setState({error: 'A date is required'});
 
     // everything ok, save
     else {
-      this.props.onSave(this.state.description, this.state.datetime, this.state.city, this.state.color)
+      this.props.onSave(description, datetime, city, color)
       this.clearInputs();
     }
   }

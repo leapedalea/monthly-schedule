@@ -11,3 +11,6 @@ export const deleteRemindersByDay = date => ({ type: types.DELETE_REMINDERS_BY_D
 
 // reminder edition
 export const setReminderEditing = id => ({ type: types.SET_REMINDER_EDITING, id })
+
+// city forecast
+export const requestCityForecast = city => ({ type: types.CITY_FORECAST_FETCH_REQUESTED, city })

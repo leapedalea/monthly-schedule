@@ -23,13 +23,28 @@ const getMonthWeeks = month => {
   return days;
 }
 
+/**
+ * Get forecast for a specific date from week weather forecast.
+ *
+ * @param {Array} List of forecast for next days
+ * @param {Moment} Date to retrieve
+ *
+ * @return {Object} Weather object
+ */
+const getDateWeather = (cityWeather, date) => (
+  cityWeather
+    .find(forecast => moment(forecast.date)
+      .isSame(date, 'day')
+    )
+);
+
 const remindersByDate = (date, reminders) => {
   return reminders
     .filter(r => r.datetime.isSame(date, 'day'))
     .sort((a, b) => a.datetime.diff(b.datetime))
 }
 
-const Month = ({ month, reminders, actions }) =>
+const Month = ({ month, reminders, cityWeather, actions }) =>
   (
     <Fragment>
       <h1>{moment().month(month).format("MMMM")}</h1>
@@ -47,16 +62,17 @@ const Month = ({ month, reminders, actions }) =>
         {moment.weekdays().map(day => (
           <p className="c_month__day-name" key={day}>{day}</p>
         ))}
-        {getMonthWeeks(month).map(date => (
+        {getMonthWeeks(month).map((date, index) => (<div>
           <MonthDay 
             key={date.format("DD/MM")}
+            cityWeather={getDateWeather(cityWeather, date)}
             date={date}
             reminders={remindersByDate(date, reminders)}
             onEdit={actions.setReminderEditing}
             onDelete={actions.deleteReminder}
             onClearDay={() => actions.deleteRemindersByDay(date)}
           />
-        ))}
+        </div>))}
       </div>
     </Fragment>
   )
