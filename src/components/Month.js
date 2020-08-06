@@ -5,21 +5,17 @@ import { GrLinkPrevious, GrLinkNext } from 'react-icons/gr';
 import MonthDay from '../components/MonthDay'
 
 const getMonthWeeks = month => {
-  const monthDate = moment().month(month >= 0 ? month : new Date().getMonth()),
-    days = [];
+  const monthDate = moment().month(month >= 0 ? month : new Date().getMonth());
   const firstMonthDay = moment(monthDate).startOf('month');
   const lastMonthDay = moment(monthDate).endOf('month');
   const firstSunday = moment(firstMonthDay).subtract(firstMonthDay.day(), 'days');
-  const weeksCount = moment(lastMonthDay).week() - moment(firstMonthDay).week() > 0 ?
-    moment(lastMonthDay).week() - moment(firstMonthDay).week() + 1 :
+  const weeksCount = lastMonthDay.week() - firstMonthDay.week() > 0 ?
+    lastMonthDay.week() - firstMonthDay.week() + 1 :
     5;
-
-  let current;
-
-  for (let i = 0; i < weeksCount * 7; i++) {
-    current = moment(firstSunday).add(i, 'days');
-    days.push(current);
-  }
+  const daysCount = weeksCount * moment.weekdays().length;
+  const days = (new Array(daysCount)).fill(0).map((el, index) =>
+    moment(firstSunday).add(index, 'days')
+  );
 
   return days;
 }
@@ -51,7 +47,7 @@ const Month = ({ month, reminders, cityWeather, actions }) => (
       <button
         type="button"
         className="c_month__nav__button c_month__nav__button--prev"
-        disable={month > 0}
+        disable={(month > 0).toString()}
         onClick={() => actions.setMonth(month - 1)}
       >
         <GrLinkPrevious />
@@ -66,7 +62,7 @@ const Month = ({ month, reminders, cityWeather, actions }) => (
       <button
         type="button"
         className="c_month__nav__button c_month__nav__button--next"
-        disable={month < 11}
+        disable={(month < 11).toString()}
         onClick={() => actions.setMonth(month + 1)}
       >
         <GrLinkNext />
