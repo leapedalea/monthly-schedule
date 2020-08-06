@@ -7,7 +7,8 @@ import MainSection from '../components/MainSection'
 const mapStateToProps = state => ({
   reminderEditing: state.reminderEditing !== null ? 
     state.reminders.find(r => r.id === state.reminderEditing) :
-    null
+    null,
+  cityWeather: state.cityWeather
 })
 
 
