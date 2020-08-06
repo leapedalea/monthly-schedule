@@ -1,21 +1,29 @@
 .c_main {
   display: flex;
-  flex-flow: row nowrap;
   min-height: 100vh;
+  flex-flow: column nowrap;
 
   color: $color__main__text;
   background: $color__main__background;
+
+  @media only screen and (min-width: 1200px) {
+    flex-flow: row nowrap;
+  }
 
   .c_button {
     background: $color__main__foreground;
   }
 
   &__detail-view {
-    flex: 0 0 20em;
-    padding: 2em 1.5em;
+    padding: 1em;
 
     color: $color__side__text;
     background: $color__side__background;
+
+    @media only screen and (min-width: 1200px) {
+      flex: 0 0 20em;
+      padding: 2em 1.5em;;
+    }
 
     .c_button {
       color: $color__side__text;

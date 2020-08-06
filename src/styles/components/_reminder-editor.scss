@@ -5,6 +5,29 @@
     letter-spacing: 1px;
   }
 
+  &__fields {
+    display: flex;
+    flex-flow: column nowrap;
+
+    @media only screen and (min-width: 800px) {
+      flex-flow: row nowrap;
+    }
+
+    @media only screen and (min-width: 1200px) {
+      flex-flow: column nowrap;
+    }
+
+    &__item {
+      flex: 1 0 auto;
+
+      @media only screen and (min-width: 800px) and (max-width: 1199px) {
+        &:nth-of-type(n+2) {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+
   &__label {
     display: block;
     font-size: .9em;

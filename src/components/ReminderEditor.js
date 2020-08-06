@@ -105,52 +105,62 @@ export class ReminderEditor extends Component {
               'Editing reminder' :
               'Create a new reminder'
           }</p>
-        <label
-          htmlFor="description"
-          className="c_reminder-editor__label"
-        >Description</label>
-        <textarea
-          type="text"
-          id="description"
-          placeholder="Insert description"
-          value={this.state.description}
-          className="c_reminder-editor__input"
-          onChange={this.handleDescriptionChange} />
-        <span
-          className="c_reminder-editor__input__note"
-          >{`${30 - this.state.description.length}`
-        }</span>
+        <div className="c_reminder-editor__fields">
+          <div className="c_reminder-editor__fields__item">
+            <label
+              htmlFor="description"
+              className="c_reminder-editor__label"
+            >Description</label>
+            <textarea
+              type="text"
+              id="description"
+              placeholder="Insert description"
+              value={this.state.description}
+              className="c_reminder-editor__input"
+              onChange={this.handleDescriptionChange} />
+            <span
+              className="c_reminder-editor__input__note"
+              >{`${30 - this.state.description.length}`
+            }</span>
+          </div>
 
-        <label
-          htmlFor="date"
-          className="c_reminder-editor__label"
-        >Date & time</label>
-        <DateTime 
-          id="date"
-          value={this.state.datetime}
-          onChange={this.handleDateTimeChange} />
+          <div className="c_reminder-editor__fields__item">
+            <label
+              htmlFor="date"
+              className="c_reminder-editor__label"
+            >Date & time</label>
+            <DateTime 
+              id="date"
+              value={this.state.datetime}
+              onChange={this.handleDateTimeChange} />
+            </div>
 
-        <label
-          htmlFor="city"
-          className="c_reminder-editor__label"
-        >City</label>
-        <input
-          type="text"
-          id="city"
-          placeholder="Insert city"
-          value={this.state.city}
-          className="c_reminder-editor__input"
-          onChange={this.handleCityChange} />
-        
-        <label className="c_reminder-editor__label">Select color</label>
-        <div 
-          className="c_reminder-editor__input c_reminder-editor__input--color"
-          style={{background: this.state.color}}
-          onClick={this.toggleColorPicker}>
-          {this.state.pickingColor && <SketchPicker 
-            color={this.state.color}
-            onChange={this.handleColorChange}
-          />}
+          <div className="c_reminder-editor__fields__item">
+            <label
+              htmlFor="city"
+              className="c_reminder-editor__label"
+            >City</label>
+            <input
+              type="text"
+              id="city"
+              placeholder="Insert city"
+              value={this.state.city}
+              className="c_reminder-editor__input"
+              onChange={this.handleCityChange} />
+            </div>
+          
+          <div className="c_reminder-editor__fields__item">
+            <label className="c_reminder-editor__label">Select color</label>
+            <div 
+              className="c_reminder-editor__input c_reminder-editor__input--color"
+              style={{background: this.state.color}}
+              onClick={this.toggleColorPicker}>
+              {this.state.pickingColor && <SketchPicker 
+                color={this.state.color}
+                onChange={this.handleColorChange}
+              />}
+            </div>
+          </div>
         </div>
 
         <p>{this.state.error}</p>
