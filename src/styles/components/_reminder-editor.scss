@@ -1,5 +1,73 @@
 .c_reminder-editor {
+  &__instruction {
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
   &__label {
     display: block;
+    font-size: .9em;
+  }
+
+  &__input,
+  .rdt > .form-control {
+    width: 100%;
+    margin: .25rem 0 1rem;
+    padding: 5px;
+
+    font-size: .9em;
+    resize: none;
+    background: rgba(0,0,0,0.35);
+    color: inherit;
+  }
+
+  &__input {
+    &--color { 
+      position: relative;
+      width: 3em;
+      height: 1.5em;
+      margin: 10px 5px 5px;
+
+      box-shadow: 0 0 0 5px rgba(0,0,0,0.35);
+      cursor: pointer;
+
+      .sketch-picker {
+        position: absolute;
+        top: 1.5em;
+        left: 0;
+      }
+    }
+
+    &__note {
+      display: block;
+      position: relative;
+      top: -2rem;
+      margin-right: 2px;
+
+      font-size: .85em;
+      text-align: right;
+      opacity: .9;
+    }
+  }
+
+  .rdtPicker {
+    color: $color__main__text;
+    margin-top: -1em;
+  }
+
+  &__button {
+    padding: .5em 1.25em;
+    margin-right: .5em;
+
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: .9em;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    &:hover {
+      opacity: .8;
+    }
   }
 }

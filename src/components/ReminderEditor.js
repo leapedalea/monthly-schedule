@@ -76,6 +76,12 @@ export class ReminderEditor extends Component {
   render() {
     return (
       <div className="c_reminder-editor">
+        <p
+          className="c_reminder-editor__instruction"
+          >{this.state.editing ? 
+              'Editing reminder' :
+              'Create a new reminder'
+          }</p>
         <label
           htmlFor="description"
           className="c_reminder-editor__label"
@@ -85,13 +91,17 @@ export class ReminderEditor extends Component {
           id="description"
           placeholder="Insert description"
           value={this.state.description}
+          className="c_reminder-editor__input"
           onChange={this.handleDescriptionChange} />
-        <span>{`${30 - this.state.description.length}`}</span>
+        <span
+          className="c_reminder-editor__input__note"
+          >{`${30 - this.state.description.length}`
+        }</span>
 
         <label
           htmlFor="date"
           className="c_reminder-editor__label"
-        >Date</label>
+        >Date & time</label>
         <DateTime 
           id="date"
           value={this.state.datetime}
@@ -106,28 +116,29 @@ export class ReminderEditor extends Component {
           id="city"
           placeholder="Insert city"
           value={this.state.city}
+          className="c_reminder-editor__input"
           onChange={this.handleCityChange} />
         
-        <label className="c_reminder-editor__label">Color</label>
-        <div style={{
-          width: '3em',
-          height: '1em',
-          border: '2px solid black',
-          background: this.state.color
-        }}
-          onClick={this.toggleColorPicker}></div>
-        {this.state.pickingColor && <SketchPicker 
-          color={this.state.color}
-          onChange={this.handleColorChange}
-        />}
+        <label className="c_reminder-editor__label">Select color</label>
+        <div 
+          className="c_reminder-editor__input c_reminder-editor__input--color"
+          style={{background: this.state.color}}
+          onClick={this.toggleColorPicker}>
+          {this.state.pickingColor && <SketchPicker 
+            color={this.state.color}
+            onChange={this.handleColorChange}
+          />}
+        </div>
 
         <p>{this.state.error}</p>
         <button
           type="button"
+          className="c_reminder-editor__button c_button"
           onClick={this.handleSubmit}
         >{this.state.editing ? 'Update' : 'Create'}</button>
         <button
           type="button"
+          className="c_reminder-editor__button c_button"
           onClick={this.handleCancel}
         >Cancel</button>
       </div>

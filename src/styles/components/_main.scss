@@ -6,17 +6,19 @@
   color: $color__main__text;
   background: $color__main__background;
 
-  button {
+  .c_button {
     background: $color__main__foreground;
   }
 
   &__detail-view {
     flex: 0 0 20em;
+    padding: 2em 1.5em;
 
     color: $color__side__text;
     background: $color__side__background;
 
-    button {
+    .c_button {
+      color: $color__side__text;
       background: $color__side__foreground;
     }
   }
