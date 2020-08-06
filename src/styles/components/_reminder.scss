@@ -1,11 +1,11 @@
 .c_reminder {
   cursor: pointer;
   position: relative;
-  padding-left: 1.5em;
+  padding: 0 1.5em;
 
   &__color-label {
     position: absolute;
-    top: -.2em;
+    top: 0;
     left: 0;
     width: 1em;
     height: 1em;
@@ -13,16 +13,52 @@
     margin: 0 2px;
   }
 
-  &__time {
-    font-size: .8em;
-    display: block;
-  }
-
   &__description {
-    line-height: 1.2;
+    display: block;
+    margin: 0 0 -0.4em;
+    font-size: .9em;
+    overflow: hidden;
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
-  &__city {
-    font-style: italic;
+  &__city,
+  &__time {
+    font-size: .7em;
+    display: inline-block;
+  }
+
+  &__weather-icon {
+    position: absolute;
+    right: -.5em;
+    top: -.5em;
+    width: 3em;
+    height: 3em;
+  }
+
+  &__delete {
+    display: none;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 1.25em;
+    height: 1.25em;
+    padding: 0;
+
+    border: 2px solid $epsilon;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+
+    path {
+      stroke: $epsilon;
+    }
+  }
+
+  &:hover {
+    .c_reminder__delete {
+      display: block;
+    }
   }
 }
